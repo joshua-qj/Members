@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:m="clr-namespace:Members.CoreBusiness;assembly=Members.CoreBusiness"
+             xmlns:vm="clr-namespace:Members.MAUI.ViewModels"
+             x:DataType="vm:StudentsViewModel"
+             x:Class="Members.MAUI.Views.StudentsPage"
+             Title="Students">
+    <Grid
+      Padding="5"
+      RowDefinitions="50,*,50"
+      ColumnDefinitions="*"
+      RowSpacing="5"
+      >
+        <SearchBar x:Name="SearchBar"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 Placeholder="Search Student"
+                 Text="{Binding FilterText}"
+                 ></SearchBar>
+        <!--SearchCommand="{Binding SearchBar_TextChangedCommand}"
+                 SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar} }"
+      has bug, can not display full list when delete search term.
+      -->
+        <CollectionView 
+          x:Name="StudentsCollection"
+          ItemsSource="{Binding Students}"
+          Grid.Row="1"
+          Grid.Column="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:Student">
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                             IsDestructive="True"
+                                             BackgroundColor="Red"
+                                             Command="{Binding Source={x:Reference StudentsCollection}, 
+                                      Path=BindingContext.DeleteStudentCommand}"
+                                             CommandParameter="{Binding StudentId}"
+                                             >
+
+                                    </SwipeItem>
+                                    <!--  Need to Binding Delete command,
+                                 Under ItemTemplate,  line 26   <DataTemplate x:DataType="m:Contact">means Binding  Contact class,
+                                      from  ItemsSource="{Binding Contacts}" each item is a Contact,  Delete command under viewmodel.
+                                      Need to swich source, and give a name ContactsCollection to  CollectionView .
+                                       CommandParameter="{Binding ContactId}" don't need to swich source. it will feed  a parameter to command.
+                                      -->
+                                    <SwipeItem Text="Edit"
+                                                           IsDestructive="False"
+                                                                                            Command="{Binding Source={x:Reference StudentsCollection}, 
+                                      Path=BindingContext.GotoEditStudentCommand}"
+                                             CommandParameter="{Binding StudentId}"
+                       BackgroundColor="Green">
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <StackLayout>
+                                <Frame Margin="0,5,0,5">
+                                    <StackLayout Orientation="Vertical" Spacing="5">
+                                        <HorizontalStackLayout>
+                                            <Label Text="{Binding FirstName}   ">  </Label>
+                                            <Label Text="{Binding LastName}"></Label>
+                                        </HorizontalStackLayout> 
+                                        <Label Text="{Binding Team.Name}"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </SwipeView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <Button 
+          Grid.Row="2"
+          Grid.Column="0"
+          x:Name="btnAdd"
+          Text="Add Student"
+          Command="{Binding GoToAddStudentCommand}"></Button>
+
+    </Grid>
+</ContentPage>

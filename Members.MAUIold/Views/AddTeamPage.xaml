@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Members.MAUI.Views.AddTeamPage"
+             xmlns:controls="clr-namespace:Members.MAUI.Views.Controls"
+             
+             Title="Add Team">
+    <controls:TeamControl 
+    IsForAdd="True"
+    BindingContext="{Binding .}">
+        
+    </controls:TeamControl>
+</ContentPage>

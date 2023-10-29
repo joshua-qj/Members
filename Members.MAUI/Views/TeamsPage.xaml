@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Members.MAUI.Views.TeamsPage"
+             xmlns:m="clr-namespace:Members.CoreBusiness;assembly=Members.CoreBusiness"
+              xmlns:vm="clr-namespace:Members.MAUI.ViewModels"
+             x:DataType="vm:TeamsViewModel"
+             Title="Teams">
+    
+    <Grid
+      Padding="5"
+      RowDefinitions="50,*,50"
+      ColumnDefinitions="*"
+      RowSpacing="5"
+      >
+        <SearchBar x:Name="SearchBar"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 Placeholder="Search Team"
+                 Text="{Binding FilterText}"
+                 ></SearchBar>
+
+        <CollectionView 
+          x:Name="TeamsCollection"
+          ItemsSource="{Binding Teams}"
+          Grid.Row="1"
+          Grid.Column="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:Team">
+                    <!--specify every item's data type is Team, Team from m namespace-->
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                             IsDestructive="True"
+                                             BackgroundColor="Red"
+                                             Command="{Binding Source={x:Reference TeamsCollection}, 
+                                      Path=BindingContext.DeleteTeamCommand}"
+                                             CommandParameter="{Binding TeamId}"
+                                             >
+
+                                    </SwipeItem>
+                                    <!--  Need to Binding Delete command,
+                                 Under ItemTemplate,  line 26   <DataTemplate x:DataType="m:Contact">means Binding  Contact class,
+                                      from  ItemsSource="{Binding Contacts}" each item is a Contact,  Delete command under viewmodel.
+                                      Need to swich source, and give a name ContactsCollection to  CollectionView .
+                                       CommandParameter="{Binding ContactId}" don't need to swich source. it will feed  a parameter to command.
+                                      -->
+                                    <SwipeItem Text="Edit"
+                                                           IsDestructive="False"
+                                                                                            Command="{Binding Source={x:Reference ContactsCollection}, 
+                                      Path=BindingContext.GotoEditTeamCommand}"
+                                             CommandParameter="{Binding TeamId}"
+                       BackgroundColor="Green">
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <StackLayout>
+                                <Frame Margin="0,5,0,5">
+                                    <StackLayout Orientation="Vertical" Spacing="5">
+                                        <Label Text="{Binding Name}"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </SwipeView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <Button 
+          Grid.Row="2"
+          Grid.Column="0"
+          x:Name="btnAdd"
+          Text="Add Team"
+          Command="{Binding GoToAddTeamCommand}"></Button>
+
+    </Grid>
+</ContentPage>

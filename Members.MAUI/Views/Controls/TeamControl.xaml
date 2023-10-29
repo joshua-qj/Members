@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Members.MAUI.Views.Controls.TeamControl"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:Members.MAUI.ViewModels"
+             x:DataType="vm:TeamViewModel"
+             >
+            
+    <VerticalStackLayout Spacing="10" Margin="20,20,20,0">
+
+        <Frame Padding="10,2,10,2">
+            <HorizontalStackLayout>
+                <Label Text="Name" VerticalOptions="Center" WidthRequest="60"></Label>
+                <Entry  VerticalOptions="Center" Text="{Binding Team.Name}">
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior
+                      x:Name="nameValidator"
+                      Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                                         MinimumLength="1"
+                            IsValid="{Binding IsNameProvided}"
+                            />
+
+                    </Entry.Behaviors>
+                </Entry>
+            </HorizontalStackLayout>
+        </Frame>
+     
+
+
+
+
+
+        <!--Compare to Non MVVM control, no need click event, and names of every Text, because it is binded to a view model-->
+        <Button x:Name="btnSave" Text="Save" Command="{Binding EditTeamCommand}" ></Button>
+        <Button x:Name="btnCancel" Text="Cancel" Command="{Binding BackToTeamsCommand}"></Button>
+
+    </VerticalStackLayout>
+</ContentView>
