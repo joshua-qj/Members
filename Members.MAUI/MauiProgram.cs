@@ -7,6 +7,9 @@ using Members.UseCases.Interfaces;
 using Members.UseCases.TeamUsecases;
 using Members.UseCases.StudentUsecases;
 using Members.Plugin.DataStore.SQLite;
+using Members.Plugin.DataStore.SQLiteWithEFCore;
+using Microsoft.EntityFrameworkCore;
+using Members.MAUI.Helper;
 
 namespace Members.MAUI {
     public static class MauiProgram {
@@ -25,8 +28,16 @@ namespace Members.MAUI {
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-            builder.Services.AddSingleton<ITeamRepository, TeamSQLiteRepository>();
-            builder.Services.AddSingleton<IStudentRepository, StudentSQLiteRepository>();
+            //builder.Services.AddDbContext<ApplicationDbContext>(options => {
+            //    options.UseSqlite($"Filename={DatabasePath.GetDatabasePath()}", x => x.MigrationsAssembly(nameof(MauiClassLibrary)));
+            //});
+
+            builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlite($"Filename={DatabasePath.GetDatabasePath()}", x => x.MigrationsAssembly(nameof(Members.Plugin.DataStore.SQLiteWithEFCore))));
+           // builder.Services.AddSingleton<ITeamRepository, TeamSQLiteRepository>();
+            builder.Services.AddSingleton<ITeamRepository, TeamSQLiteEFCoreRepository>();
+           // builder.Services.AddSingleton<IStudentRepository, StudentSQLiteRepository>();
+            builder.Services.AddSingleton<IStudentRepository, StudentSQLiteEFCoreRepository>();
 
 
             builder.Services.AddSingleton<IViewTeamsUseCase, ViewTeamsUseCase>();

@@ -51,12 +51,13 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.13" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Members.CoreBusiness\Members.CoreBusiness.csproj" />
-	  <ProjectReference Include="..\Members.Plugin.DataStore.SQLite\Members.Plugin.DataStore.SQLite.csproj" />
+	  <ProjectReference Include="..\Members.Plugin.DataStore.SQLiteWithEFCore\Members.Plugin.DataStore.SQLiteWithEFCore.csproj" />
 	  <ProjectReference Include="..\Members.UseCases\Members.UseCases.csproj" />
 	</ItemGroup>
 
