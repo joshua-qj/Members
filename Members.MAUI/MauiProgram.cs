@@ -33,7 +33,8 @@ namespace Members.MAUI {
             //});
 
             builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseSqlite($"Filename={DatabasePath.GetDatabasePath()}", x => x.MigrationsAssembly(nameof(Members.Plugin.DataStore.SQLiteWithEFCore))));
+    options => options.UseSqlite($"Filename={DatabasePath.GetDatabasePath()}",
+    x => x.MigrationsAssembly("Members.Plugin.DataStore.SQLiteWithEFCore")));
            // builder.Services.AddSingleton<ITeamRepository, TeamSQLiteRepository>();
             builder.Services.AddSingleton<ITeamRepository, TeamSQLiteEFCoreRepository>();
            // builder.Services.AddSingleton<IStudentRepository, StudentSQLiteRepository>();
