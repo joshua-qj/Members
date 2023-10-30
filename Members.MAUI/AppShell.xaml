@@ -24,10 +24,10 @@
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <Grid ColumnDefinitions=".30*,.70*" RowDefinitions="*,*,*,*" RowSpacing="10" ColumnSpacing="20">
-                <HorizontalStackLayout Grid.Row="0" Spacing="10">
-                    <Image Source="{Binding FlyoutIcon}" WidthRequest="50" HeightRequest="50"></Image>
-                    <Label Text="{Binding Title}"></Label>
+            <Grid ColumnDefinitions=".30*,.70*" RowDefinitions="*,*,*,*" RowSpacing="0" ColumnSpacing="20" >
+                <HorizontalStackLayout Grid.Row="0" Spacing="20" >
+                    <Image Source="{Binding FlyoutIcon}" WidthRequest="30" HeightRequest="60"  Scale="0.6"></Image>
+                    <Label Text="{Binding Title}" VerticalOptions="Center" ></Label>
                 </HorizontalStackLayout>
             </Grid>
         </DataTemplate>
