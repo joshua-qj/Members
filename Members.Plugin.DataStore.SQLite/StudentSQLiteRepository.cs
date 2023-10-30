@@ -13,7 +13,7 @@ namespace Members.Plugin.DataStore.SQLite {
         {
 
             _database = new SQLiteAsyncConnection(Constants.DatabasePath);
-            _database.CreateTableAsync<Student>().Wait();
+            _database.CreateTableAsync<Student>();
         }
         public async Task<List<Student>> GetStudentsAsync(string filterText) {
             if (string.IsNullOrWhiteSpace(filterText)) {
