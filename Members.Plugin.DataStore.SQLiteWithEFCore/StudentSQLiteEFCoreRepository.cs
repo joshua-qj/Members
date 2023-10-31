@@ -39,19 +39,49 @@ namespace Members.Plugin.DataStore.SQLite {
                await _context.Students.AddAsync(student);
                 await _context.SaveChangesAsync();
             }
-
+            return;
         }
 
 
-        public Task<Student> GetStudentByIdAsync(int studentId) {
-            throw new NotImplementedException();
+        public async Task<Student> GetStudentByIdAsync(int studentId) {
+            var student=await _context.Students.FindAsync(studentId);
+            if (student is not null) {
+                return student;
+            }
+            return new Student();
         }
 
       
 
-        public async Task<Student> ViewTeamAsync(int studentId) {
-           //  return await _database.Table<Student>().Where(t => t.StudentId == studentId).FirstOrDefaultAsync();
-          throw new NotImplementedException();
+        public async Task<Student> ViewStudentAsync(int studentId) {
+            if (studentId > 0) {
+                var student= await _context.Students.Where(t => t.StudentId == studentId).FirstOrDefaultAsync();
+                if (student != null) {
+                    return student;
+                }
+            }
+            return new Student();
+        }
+
+        public async Task DeleteStudentAsync(Student student) {
+            if (student is not null) {
+                 _context.Students.Remove(student);
+                await _context.SaveChangesAsync();
+            }
+            return;
+        }
+
+        public async Task UpdateStudent(int studentId, Student student) {
+            if (studentId != student.StudentId) { return; }
+            var studentToUpdate = await _context.Students.FindAsync(studentId);
+            if (studentToUpdate is not null) {
+                studentToUpdate.FirstName = student.LastName;
+                studentToUpdate.LastName = student.FirstName;
+                studentToUpdate.PhoneNumber = student.PhoneNumber;
+                studentToUpdate.Email = student.Email;
+                studentToUpdate.TeamId= student.TeamId; 
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

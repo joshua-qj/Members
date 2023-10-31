@@ -18,6 +18,10 @@ namespace Members.Plugin.DataStore.SQLite {
             //await _context.SaveChangesAsync();
         }
 
+        public Task DeleteTeamAsync(Team team) {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Team>> GetTeamsAsync(string filterText) {
             if (string.IsNullOrWhiteSpace(filterText)) {
                 return await _database.Table<Team>().ToListAsync();
@@ -30,6 +34,10 @@ namespace Members.Plugin.DataStore.SQLite {
                                         Name LIKE ? ",
                                     $"%{filterText}%"
                           );
+        }
+
+        public Task UpdateTeam(int teamId, Team team) {
+            throw new NotImplementedException();
         }
 
         public async Task<Team> ViewTeamAsync(int teamId) {

@@ -43,10 +43,15 @@ namespace Members.MAUI {
 
             builder.Services.AddSingleton<IViewTeamsUseCase, ViewTeamsUseCase>();
             builder.Services.AddSingleton<IViewTeamUseCase, ViewTeamUseCase>();
+            builder.Services.AddSingleton<IDeleteTeamUseCase, DeleteTeamUseCase>();
+            builder.Services.AddSingleton<IEditTeamUseCase, EditTeamUseCase>();
             builder.Services.AddSingleton<IAddTeamUseCase, AddTeamUseCase>();
+
             builder.Services.AddSingleton<IViewStudentsUseCase, ViewStudentsUseCase>();
             builder.Services.AddSingleton<IViewStudentUseCase, ViewStudentUseCase>();
             builder.Services.AddSingleton<IAddStudentUseCase, AddStudentUseCase>();
+            builder.Services.AddSingleton<IDeleteStudentUseCase, DeleteStudentUseCase>();
+            builder.Services.AddSingleton<IEditStudentUseCase, EditStudentUseCase>();
 
             builder.Services.AddTransient<TeamsViewModel>();
             builder.Services.AddTransient<TeamViewModel>();

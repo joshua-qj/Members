@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using Members.MAUI.Views;
 using Members.UseCases.Interfaces;
+using Members.UseCases.TeamUsecases;
 
 namespace Members.MAUI.ViewModels {
     public partial class TeamsViewModel : ObservableObject {
@@ -14,11 +15,13 @@ namespace Members.MAUI.ViewModels {
 
         private string filterText;
         private readonly IViewTeamsUseCase _viewTeamsUseCase;
+        private readonly IDeleteTeamUseCase _deleteTeamUseCase;
 
-        public TeamsViewModel(IViewTeamsUseCase viewTeamsUseCase)
+        public TeamsViewModel(IViewTeamsUseCase viewTeamsUseCase,IDeleteTeamUseCase deleteTeamUseCase)
         {
             Teams = new ObservableCollection<Team>();
             _viewTeamsUseCase = viewTeamsUseCase;
+            _deleteTeamUseCase = deleteTeamUseCase;
         }
         public string FilterText {
             get { return filterText; }
@@ -42,14 +45,14 @@ namespace Members.MAUI.ViewModels {
             }
         }
         [RelayCommand]
-        public async Task DeleteTeam(int id) {
-           // await _deleteTeamUseCase.ExecuteAsync(id);
+        public async Task DeleteTeam(Team team) {
+            await _deleteTeamUseCase.ExecuteAsync(team);
             await LoadTeamsAsync();
         }
 
         [RelayCommand]
         public async Task GotoEditTeam(int id) {
-            await Shell.Current.GoToAsync($"{nameof(EditTeamPage)}?TeamId={id}");
+            //await Shell.Current.GoToAsync($"{nameof(EditTeamPage)}?TeamId={id}");
         }
         [RelayCommand]
         private async Task GoToAddTeam() {

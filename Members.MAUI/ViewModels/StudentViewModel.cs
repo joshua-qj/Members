@@ -13,6 +13,7 @@ namespace Members.MAUI.ViewModels {
         private readonly IViewStudentUseCase _viewStudentUseCase;
         private readonly IViewTeamsUseCase _viewTeamsUseCase;
         private readonly IAddStudentUseCase _addStudentUseCase;
+        private readonly IEditStudentUseCase _editStudentUseCase;
         private Team _selectedTeam;
 
         public ObservableCollection<Team> Teams {
@@ -45,14 +46,16 @@ namespace Members.MAUI.ViewModels {
 
         public StudentViewModel(IViewStudentUseCase viewStudentUseCase,
                                 IViewTeamsUseCase viewTeamsUseCase,
-                                IAddStudentUseCase addStudentUseCase) {
+                                IAddStudentUseCase addStudentUseCase,
+                                IEditStudentUseCase editStudentUseCase
+                                ) {
             Student = new Student();
             _teamName=new List<string>();
             _viewStudentUseCase = viewStudentUseCase;
             _viewTeamsUseCase = viewTeamsUseCase;
             LoadTeams();
             _addStudentUseCase = addStudentUseCase;
-
+            _editStudentUseCase = editStudentUseCase;
         }
         public async Task LoadStudent(int studentId) {
             Student = await _viewStudentUseCase.ExecuteAsync(studentId);
@@ -72,9 +75,9 @@ namespace Members.MAUI.ViewModels {
         [RelayCommand]
         private async Task EditStudent() {
             if (await ValidateStudent()) {
-                //await _editStudentUseCase.ExecuteAsync(_Student.StudentId, _Student);
-                ////       await LoadStudent(Student.StudentId);
-                //await Shell.Current.GoToAsync($"{nameof(Students_MVVM_Page)}");
+                await _editStudentUseCase.ExecuteAsync(Student.StudentId, Student);
+                //       await LoadStudent(Student.StudentId);
+                await Shell.Current.GoToAsync($"{nameof(StudentsPage)}");
             }
         }
         [RelayCommand]

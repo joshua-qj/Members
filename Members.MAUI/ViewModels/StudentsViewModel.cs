@@ -11,10 +11,12 @@ namespace Members.MAUI.ViewModels {
 
         private string filterText;
         private readonly IViewStudentsUseCase _viewStudentsUseCase;
+        private readonly IDeleteStudentUseCase _deleteStudentUseCase;
 
-        public StudentsViewModel(IViewStudentsUseCase viewStudentsUseCase) {
+        public StudentsViewModel(IViewStudentsUseCase viewStudentsUseCase, IDeleteStudentUseCase deleteStudentUseCase) {
             Students = new ObservableCollection<Student>();
             _viewStudentsUseCase = viewStudentsUseCase;
+            _deleteStudentUseCase = deleteStudentUseCase;
         }
         public string FilterText {
             get { return filterText; }
@@ -38,8 +40,8 @@ namespace Members.MAUI.ViewModels {
             }
         }
         [RelayCommand]
-        public async Task DeleteStudent(int id) {
-            // await _deleteTeamUseCase.ExecuteAsync(id);
+        public async Task DeleteStudent(Student student) {
+            await _deleteStudentUseCase.ExecuteAsync(student);
             await LoadTeamsAsync();
         }
 

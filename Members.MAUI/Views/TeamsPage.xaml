@@ -37,7 +37,7 @@
                                              BackgroundColor="Red"
                                              Command="{Binding Source={x:Reference TeamsCollection}, 
                                       Path=BindingContext.DeleteTeamCommand}"
-                                             CommandParameter="{Binding TeamId}"
+                                             CommandParameter="{Binding .}"
                                              >
 
                                     </SwipeItem>
@@ -49,7 +49,7 @@
                                       -->
                                     <SwipeItem Text="Edit"
                                                            IsDestructive="False"
-                                                                                            Command="{Binding Source={x:Reference ContactsCollection}, 
+                                                          Command="{Binding Source={x:Reference ContactsCollection}, 
                                       Path=BindingContext.GotoEditTeamCommand}"
                                              CommandParameter="{Binding TeamId}"
                        BackgroundColor="Green">

@@ -54,5 +54,17 @@ namespace Members.Plugin.DataStore.SQLite {
              return await _database.Table<Student>().Where(t => t.StudentId == studentId).FirstOrDefaultAsync();
          //   throw new NotImplementedException();
         }
+
+        public Task DeleteStudentAsync(Student student) {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateStudent(int studentId, Student student) {
+            throw new NotImplementedException();
+        }
+
+        public Task<Student> ViewStudentAsync(int studentId) {
+            throw new NotImplementedException();
+        }
     }
 }
