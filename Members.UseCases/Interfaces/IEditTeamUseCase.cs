@@ -1,6 +1,6 @@
 ﻿using Members.CoreBusiness;
 
-namespace Members.UseCases.TeamUsecases {
+namespace Members.UseCases.Interfaces {
     public interface IEditTeamUseCase {
         Task ExecuteAsync(int teamId, Team team);
     }

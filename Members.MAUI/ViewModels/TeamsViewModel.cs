@@ -51,8 +51,8 @@ namespace Members.MAUI.ViewModels
         }
 
         [RelayCommand]
-        public async Task GotoEditTeam(int id) {
-            //await Shell.Current.GoToAsync($"{nameof(EditTeamPage)}?TeamId={id}");
+        public async Task GotoEditTeam(int teamId) {
+            await Shell.Current.GoToAsync($"{nameof(EditTeamPage)}?Id={teamId}");
         }
         [RelayCommand]
         private async Task GoToAddTeam() {

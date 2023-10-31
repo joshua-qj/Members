@@ -42,10 +42,10 @@ namespace Members.MAUI {
             builder.Services.AddSingleton<IStudentRepository, StudentSQLiteEFCoreRepository>();
 
 
-            builder.Services.AddSingleton<IViewTeamsUseCase, ViewTeamsUseCase>();
+            builder.Services.AddTransient<IViewTeamsUseCase, ViewTeamsUseCase>();
             builder.Services.AddSingleton<IViewTeamUseCase, ViewTeamUseCase>();
             builder.Services.AddSingleton<IDeleteTeamUseCase, DeleteTeamUseCase>();
-            builder.Services.AddSingleton<IEditTeamUseCase, EditTeamUseCase>();
+            builder.Services.AddTransient<IEditTeamUseCase, EditTeamUseCase>();
             builder.Services.AddSingleton<IAddTeamUseCase, AddTeamUseCase>();
 
             builder.Services.AddSingleton<IViewStudentsUseCase, ViewStudentsUseCase>();
@@ -61,8 +61,8 @@ namespace Members.MAUI {
 
 
 
-            builder.Services.AddSingleton<TeamsPage>();
-            builder.Services.AddSingleton<EditTeamPage>();
+            builder.Services.AddTransient<TeamsPage>();
+            builder.Services.AddTransient<EditTeamPage>();
             builder.Services.AddSingleton<AddTeamPage>();
             builder.Services.AddSingleton<StudentsPage>();
             builder.Services.AddSingleton<EditStudentPage>();

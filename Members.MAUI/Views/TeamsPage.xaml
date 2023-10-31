@@ -49,7 +49,7 @@
                                       -->
                                     <SwipeItem Text="Edit"
                                                            IsDestructive="False"
-                                                          Command="{Binding Source={x:Reference ContactsCollection}, 
+                                                          Command="{Binding Source={x:Reference TeamsCollection}, 
                                       Path=BindingContext.GotoEditTeamCommand}"
                                              CommandParameter="{Binding TeamId}"
                        BackgroundColor="Green">

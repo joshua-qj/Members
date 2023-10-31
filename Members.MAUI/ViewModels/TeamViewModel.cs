@@ -3,22 +3,19 @@ using CommunityToolkit.Mvvm.Input;
 using Members.CoreBusiness;
 using Members.MAUI.Views;
 using Members.UseCases.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Members.MAUI.ViewModels
-{
+namespace Members.MAUI.ViewModels {
     public partial class TeamViewModel : ObservableObject {
         private readonly IAddTeamUseCase _addTeamUseCase;
+        private readonly IEditTeamUseCase _editTeamUseCase;
         private readonly IViewTeamUseCase _viewTeamUseCase;
 
         public TeamViewModel(IAddTeamUseCase addTeamUseCase,
-                             //IEditTeamUseCase editTeamUseCase,
+                             IEditTeamUseCase editTeamUseCase,
                              IViewTeamUseCase viewTeamUseCase) {
             Team = new Team();
             _addTeamUseCase = addTeamUseCase;
+            _editTeamUseCase = editTeamUseCase;
             _viewTeamUseCase = viewTeamUseCase;
         }
         private Team _team;
@@ -38,8 +35,8 @@ namespace Members.MAUI.ViewModels
     [RelayCommand]
     private async Task EditTeam() {
         if (await ValidateTeam()) {
-            //await _editTeamUseCase.ExecuteAsync(_Team.TeamId, _Team);
-      
+            await _editTeamUseCase.ExecuteAsync(_team.TeamId, _team);
+                await LoadTeam(_team.TeamId);
             await Shell.Current.GoToAsync($"//{nameof(TeamsPage)}");
         }
     }
