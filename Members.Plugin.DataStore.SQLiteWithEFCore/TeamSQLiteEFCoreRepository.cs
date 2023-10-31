@@ -19,14 +19,6 @@ namespace Members.Plugin.DataStore.SQLite {
             return;
         }
 
-        public async Task DeleteTeamAsync(Team team) {
-            if (team is not null) {
-                _context.Teams.Remove(team);
-                await _context.SaveChangesAsync();
-            }
-            return;
-        }
-
         public async Task<List<Team>> GetTeamsAsync(string filterText) {
             if (string.IsNullOrWhiteSpace(filterText)) {
                 return await _context.Teams.ToListAsync();
@@ -44,7 +36,7 @@ namespace Members.Plugin.DataStore.SQLite {
             }
         }
 
-        public async Task<Team> ViewTeamAsync(int teamId) {
+        public async Task<Team> GetTeamByIdAsync(int teamId) {
             if (teamId >0) {
                 var team= await _context.Teams.Where(t => t.TeamId == teamId).FirstOrDefaultAsync();
                if (team != null) {
@@ -52,6 +44,14 @@ namespace Members.Plugin.DataStore.SQLite {
                 }
             }
             return new Team();
+        }
+
+        public async Task DeleteTeamAsync(int teamId) {
+            var team = await GetTeamByIdAsync(teamId);
+            if (team != null && team.TeamId == teamId) {
+                 _context.Teams.Remove(team);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

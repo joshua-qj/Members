@@ -4,6 +4,6 @@ namespace Members.UseCases.Interfaces
 {
     public interface IDeleteStudentUseCase
     {
-        Task ExecuteAsync(Student student);
+        Task ExecuteAsync(int studentId);
     }
 }

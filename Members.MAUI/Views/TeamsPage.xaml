@@ -37,7 +37,7 @@
                                              BackgroundColor="Red"
                                              Command="{Binding Source={x:Reference TeamsCollection}, 
                                       Path=BindingContext.DeleteTeamCommand}"
-                                             CommandParameter="{Binding .}"
+                                             CommandParameter="{Binding TeamId}"
                                              >
 
                                     </SwipeItem>

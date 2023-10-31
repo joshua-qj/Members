@@ -4,6 +4,6 @@ namespace Members.UseCases.Interfaces
 {
     public interface IDeleteTeamUseCase
     {
-        Task ExecuteAsync(Team team);
+        Task ExecuteAsync(int teamId);
     }
 }

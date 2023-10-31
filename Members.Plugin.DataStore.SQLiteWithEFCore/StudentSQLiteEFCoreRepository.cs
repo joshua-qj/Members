@@ -63,13 +63,7 @@ namespace Members.Plugin.DataStore.SQLite {
             return new Student();
         }
 
-        public async Task DeleteStudentAsync(Student student) {
-            if (student is not null) {
-                 _context.Students.Remove(student);
-                await _context.SaveChangesAsync();
-            }
-            return;
-        }
+
 
         public async Task UpdateStudent(int studentId, Student student) {
             if (studentId != student.StudentId) { return; }
@@ -80,6 +74,14 @@ namespace Members.Plugin.DataStore.SQLite {
                 studentToUpdate.PhoneNumber = student.PhoneNumber;
                 studentToUpdate.Email = student.Email;
                 studentToUpdate.TeamId= student.TeamId; 
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteStudentAsync(int studentId) {
+            var student = await GetStudentByIdAsync(studentId);
+            if (student != null && student.StudentId == studentId) {
+                _context.Students.Remove(student);
                 await _context.SaveChangesAsync();
             }
         }

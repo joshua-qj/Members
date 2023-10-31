@@ -11,8 +11,8 @@ namespace Members.UseCases.StudentUsecases
             _studentRepository = studentRepository;
         }
 
-        public async Task ExecuteAsync(Student student) {
-            await _studentRepository.DeleteStudentAsync(student);
+        public async Task ExecuteAsync(int studentId) {
+            await _studentRepository.DeleteStudentAsync(studentId);
         }
     }
 }

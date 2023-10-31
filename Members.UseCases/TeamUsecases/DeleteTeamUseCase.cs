@@ -11,8 +11,8 @@ namespace Members.UseCases.TeamUsecases
             _teamRepository = teamRepository;
         }
 
-        public async Task ExecuteAsync(Team team) {
-            await _teamRepository.DeleteTeamAsync(team);
+        public async Task ExecuteAsync(int teamId) {
+            await _teamRepository.DeleteTeamAsync(teamId);
         }
     }
 }

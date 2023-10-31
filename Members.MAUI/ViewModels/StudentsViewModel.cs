@@ -40,8 +40,8 @@ namespace Members.MAUI.ViewModels {
             }
         }
         [RelayCommand]
-        public async Task DeleteStudent(Student student) {
-            await _deleteStudentUseCase.ExecuteAsync(student);
+        public async Task DeleteStudent(int studentId) {
+            await _deleteStudentUseCase.ExecuteAsync(studentId);
             await LoadTeamsAsync();
         }
 

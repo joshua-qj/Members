@@ -45,8 +45,8 @@ namespace Members.MAUI.ViewModels
             }
         }
         [RelayCommand]
-        public async Task DeleteTeam(Team team) {
-            await _deleteTeamUseCase.ExecuteAsync(team);
+        public async Task DeleteTeam(int teamId) {
+            await _deleteTeamUseCase.ExecuteAsync(teamId);
             await LoadTeamsAsync();
         }
 

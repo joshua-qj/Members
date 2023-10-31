@@ -11,7 +11,7 @@ namespace Members.UseCases.TeamUsecases
             _teamRepository = teamRepository;
         }
         public async Task<Team> ExecuteAsync(int teamId) {
-            return await _teamRepository.ViewTeamAsync(teamId);
+            return await _teamRepository.GetTeamByIdAsync(teamId);
         }
     }
 }
