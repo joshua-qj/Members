@@ -11,7 +11,8 @@ using Members.Plugin.DataStore.SQLiteWithEFCore;
 using Microsoft.EntityFrameworkCore;
 using Members.MAUI.Helper;
 
-namespace Members.MAUI {
+namespace Members.MAUI
+{
     public static class MauiProgram {
         public static MauiApp CreateMauiApp() {
             var builder = MauiApp.CreateBuilder();

@@ -4,9 +4,9 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using Members.MAUI.Views;
 using Members.UseCases.Interfaces;
-using Members.UseCases.TeamUsecases;
 
-namespace Members.MAUI.ViewModels {
+namespace Members.MAUI.ViewModels
+{
     public partial class TeamsViewModel : ObservableObject {
 
         public ObservableCollection<Team> Teams { get; set; }
