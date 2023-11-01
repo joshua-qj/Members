@@ -26,6 +26,14 @@ namespace Members.Plugin.DataStore.SQLiteWithEFCore {
                 .WithMany(t => t.Students)
                 .HasForeignKey(s => s.TeamId);
         }
+        /*        a one-to-many relationship between Student and Team. 
+         *        The HasOne method specifies the navigation property on the Student entity 
+         *        that points to the related Team entity. 
+         *        The WithMany method specifies the navigation property on the Team entity
+         *        that points to the collection of related Student entities. Finally,
+         *        the HasForeignKey method specifies the foreign key property on the Student entity 
+         *        that is used to store the ID of the related Team.
+        }*/
         /*dotnet ef migrations add Initial --startup-project .\Members.Plugin.DataStore.SQLiteWithEFCore --project .\Members.Plugin.DataStore.SQLiteWithEFCore*/
     }
 }
