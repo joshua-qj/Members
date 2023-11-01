@@ -31,7 +31,10 @@ namespace Members.Plugin.DataStore.SQLite {
             if (teamId != team.TeamId) { return; }
             var teamToUpdate = await _context.Teams.FindAsync(teamId);
             if (teamToUpdate is not null) {
-                teamToUpdate.Name = team.Name;
+                //teamToUpdate.Name = team.Name;
+                _context.Teams.Remove(teamToUpdate);
+
+                _context.Add(new Team { Name = team.Name });
                 await _context.SaveChangesAsync();
             }
         }

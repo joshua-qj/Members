@@ -16,5 +16,6 @@ public partial class AddStudentPage : ContentPage
     protected override void OnAppearing() {
         base.OnAppearing();
         _studentViewModel.Student = new Student();
+        _studentViewModel.SelectedTeam=new Team();
     }
 }

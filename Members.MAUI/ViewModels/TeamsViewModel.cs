@@ -8,9 +8,12 @@ using Members.UseCases.Interfaces;
 namespace Members.MAUI.ViewModels {
     public partial class TeamsViewModel : ObservableObject {
 
-        //private ObservableCollection<Team> _teams;
+        private ObservableCollection<Team> _teams;
         public ObservableCollection<Team> Teams {
-            get ; set;
+            get => _teams;
+            set { 
+            SetProperty(ref _teams, value);
+            }
         }
 
 
@@ -35,10 +38,10 @@ namespace Members.MAUI.ViewModels {
         }
 
         private async void LoadTeamsMethod(string filterText) {
-            await LoadTeamsAsync();
+            await LoadTeamsAsync(filterText);
         }
         public async Task LoadTeamsAsync(string filterText = null) {
-
+            
             Teams.Clear();
             var teams = await _viewTeamsUseCase.ExecuteAsync(filterText);
             if (teams != null && teams.Count > 0) {

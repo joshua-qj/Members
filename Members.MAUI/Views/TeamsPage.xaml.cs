@@ -12,7 +12,7 @@ public partial class TeamsPage : ContentPage
 	{
 		InitializeComponent();
         _teamsViewModel = teamsViewModel;
-        BindingContext = _teamsViewModel;
+        this.BindingContext = _teamsViewModel;
     }
 
 
@@ -20,7 +20,7 @@ public partial class TeamsPage : ContentPage
 
     protected override async void OnAppearing() {
         base.OnAppearing();
-       // SearchBar.Text = string.Empty;
+        SearchBar.Text = string.Empty;
         await _teamsViewModel.LoadTeamsAsync();
     }
 

@@ -12,7 +12,8 @@ public partial class EditTeamPage : ContentPage
         BindingContext = _teamViewModel;
     }
 
-    public string TeamId { set {
+    public string TeamId { 
+        set {
             if (!string.IsNullOrWhiteSpace(value) && int.TryParse(value, out int teamId)) {
                 LoadContactAsync(teamId);
             } }

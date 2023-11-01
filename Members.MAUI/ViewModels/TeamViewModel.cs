@@ -22,7 +22,7 @@ namespace Members.MAUI.ViewModels {
 
 
         public Team Team {
-            get { return _team; }
+            get => _team; 
             set { SetProperty(ref _team, value); }
         }
 

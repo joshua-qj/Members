@@ -69,11 +69,21 @@ namespace Members.Plugin.DataStore.SQLite {
             if (studentId != student.StudentId) { return; }
             var studentToUpdate = await _context.Students.FindAsync(studentId);
             if (studentToUpdate is not null) {
-                studentToUpdate.FirstName = student.LastName;
-                studentToUpdate.LastName = student.FirstName;
-                studentToUpdate.PhoneNumber = student.PhoneNumber;
-                studentToUpdate.Email = student.Email;
-                studentToUpdate.TeamId= student.TeamId; 
+                _context.Students.Remove(studentToUpdate);
+
+               await _context.Students.AddAsync(new Student {
+                   FirstName = student.LastName,
+                LastName = student.FirstName,
+                PhoneNumber = student.PhoneNumber,
+                Email = student.Email,
+                TeamId = student.TeamId
+               
+            });
+                //studentToUpdate.FirstName = student.LastName;
+                //studentToUpdate.LastName = student.FirstName;
+                //studentToUpdate.PhoneNumber = student.PhoneNumber;
+                //studentToUpdate.Email = student.Email;
+                //studentToUpdate.TeamId= student.TeamId; 
                 await _context.SaveChangesAsync();
             }
         }
