@@ -60,3 +60,9 @@
     </FlyoutItem>
 
 </Shell>
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate view:TeamsPage }"
+        Route="TeamsPage" />
+
+</Shell>-->

@@ -5,8 +5,7 @@
              x:Class="Members.MAUI.Views.EditStudentPage"
              Title="Edit Student">
 
-    <controls:StudentControl
-                      
+    <controls:StudentControl                      
                         IsForEdit="True"
                         BindingContext="{Binding .}"></controls:StudentControl>
 </ContentPage>

@@ -12,6 +12,7 @@ public partial class TeamControl : ContentView {
 
     protected override void OnPropertyChanged([CallerMemberName] string propertyName = null) {
         base.OnPropertyChanged(propertyName);
+        
         if (IsForAdd && !IsForEdit) {
             btnSave.SetBinding(Button.CommandProperty, "AddTeamCommand");
         } else if (!IsForAdd && IsForEdit) {

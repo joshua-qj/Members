@@ -44,7 +44,7 @@ namespace Members.Plugin.DataStore.SQLite {
 
 
         public async Task<Student> GetStudentByIdAsync(int studentId) {
-            var student=await _context.Students.FindAsync(studentId);
+            var student=await _context.Students.Where(t => t.StudentId == studentId).Include(s => s.Team).FirstOrDefaultAsync();
             if (student is not null) {
                 return student;
             }

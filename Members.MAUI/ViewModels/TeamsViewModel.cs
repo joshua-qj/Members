@@ -5,11 +5,14 @@ using System.Collections.ObjectModel;
 using Members.MAUI.Views;
 using Members.UseCases.Interfaces;
 
-namespace Members.MAUI.ViewModels
-{
+namespace Members.MAUI.ViewModels {
     public partial class TeamsViewModel : ObservableObject {
 
-        public ObservableCollection<Team> Teams { get; set; }
+        //private ObservableCollection<Team> _teams;
+        public ObservableCollection<Team> Teams {
+            get ; set;
+        }
+
 
 
 
@@ -17,8 +20,8 @@ namespace Members.MAUI.ViewModels
         private readonly IViewTeamsUseCase _viewTeamsUseCase;
         private readonly IDeleteTeamUseCase _deleteTeamUseCase;
 
-        public TeamsViewModel(IViewTeamsUseCase viewTeamsUseCase,IDeleteTeamUseCase deleteTeamUseCase)
-        {
+        public TeamsViewModel(IViewTeamsUseCase viewTeamsUseCase, IDeleteTeamUseCase deleteTeamUseCase) {
+       
             Teams = new ObservableCollection<Team>();
             _viewTeamsUseCase = viewTeamsUseCase;
             _deleteTeamUseCase = deleteTeamUseCase;
@@ -32,15 +35,15 @@ namespace Members.MAUI.ViewModels
         }
 
         private async void LoadTeamsMethod(string filterText) {
-            await LoadTeamsAsync(filterText);
+            await LoadTeamsAsync();
         }
-        public async Task LoadTeamsAsync(string filter = null) {
- 
+        public async Task LoadTeamsAsync(string filterText = null) {
+
             Teams.Clear();
-            var teams = await _viewTeamsUseCase.ExecuteAsync(filter);
+            var teams = await _viewTeamsUseCase.ExecuteAsync(filterText);
             if (teams != null && teams.Count > 0) {
                 foreach (var team in teams) {
-                    Teams.Add(team);
+                    this.Teams.Add(team);
                 }
             }
         }
@@ -60,7 +63,7 @@ namespace Members.MAUI.ViewModels
         }
         [RelayCommand]
         public async Task SearchBar_TextChangedAsync(string filter) {
-            await LoadTeamsAsync(filter);
+            await LoadTeamsAsync();
         }
     }
 }

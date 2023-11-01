@@ -6,6 +6,7 @@ using Members.UseCases.Interfaces;
 
 namespace Members.MAUI.ViewModels {
     public partial class TeamViewModel : ObservableObject {
+        private Team _team;
         private readonly IAddTeamUseCase _addTeamUseCase;
         private readonly IEditTeamUseCase _editTeamUseCase;
         private readonly IViewTeamUseCase _viewTeamUseCase;
@@ -18,7 +19,7 @@ namespace Members.MAUI.ViewModels {
             _editTeamUseCase = editTeamUseCase;
             _viewTeamUseCase = viewTeamUseCase;
         }
-        private Team _team;
+
 
         public Team Team {
             get { return _team; }
@@ -36,7 +37,7 @@ namespace Members.MAUI.ViewModels {
     private async Task EditTeam() {
         if (await ValidateTeam()) {
             await _editTeamUseCase.ExecuteAsync(_team.TeamId, _team);
-                await LoadTeam(_team.TeamId);
+               // await LoadTeam(_team.TeamId);
             await Shell.Current.GoToAsync($"//{nameof(TeamsPage)}");
         }
     }

@@ -49,8 +49,8 @@ namespace Members.MAUI.ViewModels {
                                 IAddStudentUseCase addStudentUseCase,
                                 IEditStudentUseCase editStudentUseCase
                                 ) {
-            Student = new Student();
-            _teamName=new List<string>();
+            Student = new Student(); 
+            _teamName = new List<string>();
             _viewStudentUseCase = viewStudentUseCase;
             _viewTeamsUseCase = viewTeamsUseCase;
             LoadTeams();
@@ -59,6 +59,11 @@ namespace Members.MAUI.ViewModels {
         }
         public async Task LoadStudent(int studentId) {
             Student = await _viewStudentUseCase.ExecuteAsync(studentId);
+        }
+
+        public async Task<Student> LoadStudentWithTeamData(int studentId) {
+            var student = await _viewStudentUseCase.ExecuteAsync(studentId);
+            return student;
         }
 
         public async void LoadTeams() {
@@ -77,7 +82,7 @@ namespace Members.MAUI.ViewModels {
             if (await ValidateStudent()) {
                 await _editStudentUseCase.ExecuteAsync(Student.StudentId, Student);
                 //       await LoadStudent(Student.StudentId);
-                await Shell.Current.GoToAsync($"{nameof(StudentsPage)}");
+                await Shell.Current.GoToAsync($"//{nameof(StudentsPage)}");
             }
         }
         [RelayCommand]

@@ -32,7 +32,7 @@
 
 
         <!--Compare to Non MVVM control, no need click event, and names of every Text, because it is binded to a view model-->
-        <Button x:Name="btnSave" Text="Save" Command="{Binding EditTeamCommand}" ></Button>
+        <Button x:Name="btnSave" Text="Save"  ></Button>
         <Button x:Name="btnCancel" Text="Cancel" Command="{Binding BackToTeamsCommand}"></Button>
 
     </VerticalStackLayout>

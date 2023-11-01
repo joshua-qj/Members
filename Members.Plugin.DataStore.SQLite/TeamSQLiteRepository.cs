@@ -22,6 +22,14 @@ namespace Members.Plugin.DataStore.SQLite {
             throw new NotImplementedException();
         }
 
+        public Task DeleteTeamAsync(int teamId) {
+            throw new NotImplementedException();
+        }
+
+        public Task<Team> GetTeamByIdAsync(int teamId) {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Team>> GetTeamsAsync(string filterText) {
             if (string.IsNullOrWhiteSpace(filterText)) {
                 return await _database.Table<Team>().ToListAsync();

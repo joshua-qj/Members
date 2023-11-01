@@ -43,26 +43,26 @@ namespace Members.MAUI {
 
 
             builder.Services.AddTransient<IViewTeamsUseCase, ViewTeamsUseCase>();
-            builder.Services.AddSingleton<IViewTeamUseCase, ViewTeamUseCase>();
-            builder.Services.AddSingleton<IDeleteTeamUseCase, DeleteTeamUseCase>();
+            builder.Services.AddTransient<IViewTeamUseCase, ViewTeamUseCase>();
+            builder.Services.AddTransient<IDeleteTeamUseCase, DeleteTeamUseCase>();
             builder.Services.AddTransient<IEditTeamUseCase, EditTeamUseCase>();
-            builder.Services.AddSingleton<IAddTeamUseCase, AddTeamUseCase>();
+            builder.Services.AddTransient<IAddTeamUseCase, AddTeamUseCase>();
 
-            builder.Services.AddSingleton<IViewStudentsUseCase, ViewStudentsUseCase>();
-            builder.Services.AddSingleton<IViewStudentUseCase, ViewStudentUseCase>();
-            builder.Services.AddSingleton<IAddStudentUseCase, AddStudentUseCase>();
-            builder.Services.AddSingleton<IDeleteStudentUseCase, DeleteStudentUseCase>();
-            builder.Services.AddSingleton<IEditStudentUseCase, EditStudentUseCase>();
+            builder.Services.AddTransient<IViewStudentsUseCase, ViewStudentsUseCase>();
+            builder.Services.AddTransient<IViewStudentUseCase, ViewStudentUseCase>();
+            builder.Services.AddTransient<IAddStudentUseCase, AddStudentUseCase>();
+            builder.Services.AddTransient<IDeleteStudentUseCase, DeleteStudentUseCase>();
+            builder.Services.AddTransient<IEditStudentUseCase, EditStudentUseCase>();
 
-            builder.Services.AddTransient<TeamsViewModel>();
-            builder.Services.AddTransient<TeamViewModel>();
-            builder.Services.AddTransient<StudentsViewModel>();
-            builder.Services.AddTransient<StudentViewModel>();
+            builder.Services.AddSingleton<TeamsViewModel>();
+            builder.Services.AddSingleton<TeamViewModel>();
+            builder.Services.AddSingleton<StudentsViewModel>();
+            builder.Services.AddSingleton<StudentViewModel>();
 
 
 
-            builder.Services.AddTransient<TeamsPage>();
-            builder.Services.AddTransient<EditTeamPage>();
+            builder.Services.AddSingleton<TeamsPage>();
+            builder.Services.AddSingleton<EditTeamPage>();
             builder.Services.AddSingleton<AddTeamPage>();
             builder.Services.AddSingleton<StudentsPage>();
             builder.Services.AddSingleton<EditStudentPage>();

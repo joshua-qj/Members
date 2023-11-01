@@ -39,7 +39,6 @@
                                       Path=BindingContext.DeleteTeamCommand}"
                                              CommandParameter="{Binding TeamId}"
                                              >
-
                                     </SwipeItem>
                                     <!--  Need to Binding Delete command,
                                  Under ItemTemplate,  line 26   <DataTemplate x:DataType="m:Contact">means Binding  Contact class,
@@ -48,11 +47,12 @@
                                        CommandParameter="{Binding ContactId}" don't need to swich source. it will feed  a parameter to command.
                                       -->
                                     <SwipeItem Text="Edit"
-                                                           IsDestructive="False"
+                                                           IsDestructive="False" 
+                                               BackgroundColor="Green"
                                                           Command="{Binding Source={x:Reference TeamsCollection}, 
                                       Path=BindingContext.GotoEditTeamCommand}"
                                              CommandParameter="{Binding TeamId}"
-                       BackgroundColor="Green">
+                       >
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.RightItems>

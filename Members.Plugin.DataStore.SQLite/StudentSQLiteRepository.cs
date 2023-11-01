@@ -66,5 +66,9 @@ namespace Members.Plugin.DataStore.SQLite {
         public Task<Student> ViewStudentAsync(int studentId) {
             throw new NotImplementedException();
         }
+
+        public Task DeleteStudentAsync(int studentId) {
+            throw new NotImplementedException();
+        }
     }
 }
