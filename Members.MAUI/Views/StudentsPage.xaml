@@ -40,14 +40,8 @@
                                       Path=BindingContext.DeleteStudentCommand}"
                                              CommandParameter="{Binding StudentId}"
                                              >
-
                                     </SwipeItem>
-                                    <!--  Need to Binding Delete command,
-                                 Under ItemTemplate,  line 26   <DataTemplate x:DataType="m:Contact">means Binding  Contact class,
-                                      from  ItemsSource="{Binding Contacts}" each item is a Contact,  Delete command under viewmodel.
-                                      Need to swich source, and give a name ContactsCollection to  CollectionView .
-                                       CommandParameter="{Binding ContactId}" don't need to swich source. it will feed  a parameter to command.
-                                      -->
+
                                     <SwipeItem Text="Edit"
                                                            IsDestructive="False"
                                                                                             Command="{Binding Source={x:Reference StudentsCollection}, 
@@ -57,6 +51,29 @@
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.RightItems>
+
+
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Present"
+                                             IsDestructive="False"
+                                             BackgroundColor="Blue"
+                                             Command="{Binding Source={x:Reference StudentsCollection}, 
+                                      Path=BindingContext.ClockInStudentCommand}"
+                                             CommandParameter="{Binding StudentId}"
+                                             >
+                                    </SwipeItem>
+
+                                    <SwipeItem Text="Leave"
+                                                           IsDestructive="False"
+                                                 BackgroundColor="Blue"
+                                                           Command="{Binding Source={x:Reference StudentsCollection}, 
+                                      Path=BindingContext.ClockOffStudentCommand}"
+                                             CommandParameter="{Binding StudentId}" >
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
 
                             <StackLayout>
                                 <Frame Margin="0,5,0,5">

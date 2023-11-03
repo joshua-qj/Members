@@ -2,8 +2,7 @@
 using Members.UseCases.Interfaces;
 using Members.UseCases.PluginInterfaces;
 
-namespace Members.UseCases.StudentUsecases
-{
+namespace Members.UseCases.StudentUseCases {
     public class EditStudentUseCase : IEditStudentUseCase {
         private readonly IStudentRepository _studentRepository;
 

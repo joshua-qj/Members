@@ -15,6 +15,6 @@ public partial class StudentsPage : ContentPage
 
     protected override async void OnAppearing() {
         base.OnAppearing();
-       await _studentsViewModelcs.LoadTeamsAsync();
+       await _studentsViewModelcs.LoadStudentsAsync();
     }
 }

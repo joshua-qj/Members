@@ -2,8 +2,7 @@
 using Members.UseCases.Interfaces;
 using Members.UseCases.PluginInterfaces;
 
-namespace Members.UseCases.TeamUsecases
-{
+namespace Members.UseCases.TeamUseCases {
     public class ViewTeamsUseCase : IViewTeamsUseCase {
         private readonly ITeamRepository _teamRepository;
 

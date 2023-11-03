@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Members.UseCases.TeamUsecases
-{
+namespace Members.UseCases.TeamUseCases {
     public class AddTeamUseCase : IAddTeamUseCase {
         private readonly ITeamRepository _teamRepository;
 
