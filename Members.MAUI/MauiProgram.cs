@@ -55,11 +55,13 @@ namespace Members.MAUI {
 
             builder.Services.AddSingleton<IClockInStudentAttendanceRecordUseCase,ClockInStudentAttendanceRecordUseCase>();
             builder.Services.AddSingleton<IClockOffStudentAttendanceRecordUseCase, ClockOffStudentAttendanceRecordUseCase>();
+            builder.Services.AddSingleton<IViewAttendanceRecordsUseCase, ViewAttendanceRecordsUseCase>();
 
             builder.Services.AddSingleton<TeamsViewModel>();
             builder.Services.AddSingleton<TeamViewModel>();
             builder.Services.AddSingleton<StudentsViewModel>();
             builder.Services.AddSingleton<StudentViewModel>();
+            builder.Services.AddSingleton<AttendanceRecordsViewModel>();
 
 
 
@@ -69,6 +71,7 @@ namespace Members.MAUI {
             builder.Services.AddSingleton<StudentsPage>();
             builder.Services.AddSingleton<EditStudentPage>();
             builder.Services.AddSingleton<AddStudentPage>();
+            builder.Services.AddSingleton<AttendanceRecordsPage>();
             return builder.Build();
         }
     }

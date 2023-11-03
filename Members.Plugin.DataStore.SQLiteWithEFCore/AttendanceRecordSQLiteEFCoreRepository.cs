@@ -1,11 +1,6 @@
 ﻿using Members.CoreBusiness;
 using Members.UseCases.PluginInterfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Members.Plugin.DataStore.SQLiteWithEFCore {
     public class AttendanceRecordSQLiteEFCoreRepository : IAttendanceRecordRepository {
@@ -22,7 +17,7 @@ namespace Members.Plugin.DataStore.SQLiteWithEFCore {
         }
 
         public async Task<List<AttendanceRecord>> GetAttendanceRecordsAsync() {
-            var attendanceRecords = await _context.AttendanceRecords.Include(s => s.Student).ToListAsync();
+            var attendanceRecords = await _context.AttendanceRecords.ToListAsync();
             if (attendanceRecords is not null) {
                 return attendanceRecords;
             }
