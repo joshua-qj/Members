@@ -44,6 +44,7 @@ namespace Members.MAUI.ViewModels {
             
             Teams.Clear();
             var teams = await _viewTeamsUseCase.ExecuteAsync(filterText);
+           teams = teams.OrderBy(team => team.Name).ToList();
             if (teams != null && teams.Count > 0) {
                 foreach (var team in teams) {
                     this.Teams.Add(team);

@@ -33,6 +33,7 @@ namespace Members.MAUI.ViewModels {
 
             Students.Clear();
             var students = await _viewStudentsUseCase.ExecuteAsync(filter);
+         students = students.OrderBy(s => s.Team?.Name).ThenBy(s => s.FirstName).ToList();
             if (students != null && students.Count > 0) {
                 foreach (var team in students) {
                     Students.Add(team);
