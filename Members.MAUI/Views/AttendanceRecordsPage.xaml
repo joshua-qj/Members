@@ -34,25 +34,21 @@
                                 <Frame Margin="0,5,0,5">
                                     <StackLayout Orientation="Vertical" Spacing="5">
                                 <HorizontalStackLayout>
-                                    <Label Text="Name:" VerticalOptions="Center" WidthRequest="50"></Label>
-                                    <Label Text="{Binding Student.FirstName}" Margin="0,0,10,0" ></Label>
-                                    <Label Text="{Binding Student.LastName}" ></Label>
+                                    <Label Text="Name:" FontSize="Body" BackgroundColor="DarkGray"  VerticalOptions="Center" WidthRequest="50"></Label>
+                                    <Label Text="{Binding Student.FirstName}" Margin="0,0,10,0" VerticalOptions="Center"  ></Label>
+                                    <Label Text="{Binding Student.LastName}" Margin="0,0,10,0"  VerticalOptions="Center" ></Label>
 
                                     <Label Text="Team:" VerticalOptions="Center" WidthRequest="50"></Label>
-                                    <Label Text="{Binding Student.Team.Name}" ></Label>
+                                    <Label Text="{Binding Student.Team.Name}" VerticalOptions="Center" ></Label>
+                                </HorizontalStackLayout>
+                                
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding ClockInOutStatus}"  FontSize="Medium"  Margin="0,0,7,0" ></Label>
+                                    <Label Text="at "  FontSize="Medium" VerticalOptions="Center" ></Label>
+                                    <Label Text="{Binding Date}" VerticalOptions="Center" ></Label>
                                 </HorizontalStackLayout>
                                 <HorizontalStackLayout>
-                                    <Label Text="Date:" VerticalOptions="Center" WidthRequest="50"></Label>
-                                    <Label Text="{Binding Date}" Margin="0,0,10,0" ></Label>
-                                </HorizontalStackLayout>
-                                <HorizontalStackLayout>
-
-                                    <Label Text="In:" VerticalOptions="Center" WidthRequest="20"></Label>
-                                    <Label Text="{Binding IsPresent}" Margin="0,0,10,0" ></Label>
-                                    <Label Text="Out:" VerticalOptions="Center" WidthRequest="50"></Label>
-                                    <Label Text="{Binding IsLeave}" ></Label>
-                                </HorizontalStackLayout>
-                 
+                                </HorizontalStackLayout>                 
                                     </StackLayout>
                                 </Frame>
 

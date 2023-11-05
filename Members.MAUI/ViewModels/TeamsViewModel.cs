@@ -7,14 +7,14 @@ using Members.UseCases.Interfaces;
 
 namespace Members.MAUI.ViewModels {
     public partial class TeamsViewModel : ObservableObject {
-
+        [ObservableProperty]
         private ObservableCollection<Team> _teams;
-        public ObservableCollection<Team> Teams {
-            get => _teams;
-            set { 
-            SetProperty(ref _teams, value);
-            }
-        }
+        //public ObservableCollection<Team> Teams {
+        //    get => _teams;
+        //    set { 
+        //    SetProperty(ref _teams, value);
+        //    }
+        //}
 
 
 

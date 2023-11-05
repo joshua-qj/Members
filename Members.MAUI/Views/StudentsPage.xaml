@@ -66,7 +66,7 @@
 
                                     <SwipeItem Text="Leave"
                                                            IsDestructive="False"
-                                                 BackgroundColor="Blue"
+                                                 BackgroundColor="DeepSkyBlue"
                                                            Command="{Binding Source={x:Reference StudentsCollection}, 
                                       Path=BindingContext.ClockOffStudentCommand}"
                                              CommandParameter="{Binding StudentId}" >

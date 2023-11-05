@@ -14,6 +14,15 @@ namespace Members.CoreBusiness {
         public bool IsPresent { get; set; }
         public bool IsLeave { get; set; }
 
+        public string ClockInOutStatus {
+            get {
+                return IsPresent && IsLeave
+                    ? "Both clocked in and out"
+                    : IsPresent ? "Present" :
+                    IsLeave ? "Leave" : "Not clocked in or out";
+            }
+        }
+
         // Navigation property
         [Ignore]
         public Student Student { get; set; }
