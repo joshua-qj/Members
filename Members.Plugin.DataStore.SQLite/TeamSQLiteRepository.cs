@@ -32,6 +32,10 @@ namespace Members.Plugin.DataStore.SQLite {
                           );
         }
 
+        public async Task UpdateTeam(int teamId, Team team) {
+            await _database.UpdateAsync(team);
+        }
+
         public async Task<Team> ViewTeamAsync(int teamId) {
             return await _database.Table<Team>().Where(t => t.TeamId == teamId).FirstOrDefaultAsync();
         }

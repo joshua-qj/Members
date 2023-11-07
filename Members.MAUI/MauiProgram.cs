@@ -7,6 +7,7 @@ using Members.UseCases.Interfaces;
 using Members.UseCases.TeamUsecases;
 using Members.UseCases.StudentUsecases;
 using Members.Plugin.DataStore.SQLite;
+using Members.UseCases.TeamUseCases;
 
 namespace Members.MAUI {
     public static class MauiProgram {
@@ -35,6 +36,7 @@ namespace Members.MAUI {
             builder.Services.AddSingleton<IViewStudentsUseCase, ViewStudentsUseCase>();
             builder.Services.AddSingleton<IViewStudentUseCase, ViewStudentUseCase>();
             builder.Services.AddSingleton<IAddStudentUseCase, AddStudentUseCase>();
+            builder.Services.AddSingleton<IEditTeamUseCase, EditTeamUseCase>();
 
             builder.Services.AddTransient<TeamsViewModel>();
             builder.Services.AddTransient<TeamViewModel>();
