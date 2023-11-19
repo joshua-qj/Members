@@ -45,7 +45,11 @@
         ContentTemplate="{DataTemplate view:TeamsPage}"
         Route="TeamsPage"
             Icon="dotnet_bot.png" />
-
+        <ShellContent
+        Title="Login"
+      ContentTemplate="{DataTemplate view:LoginPage}"
+        Route="LoginPage" 
+            Icon="dotnet_bot.png"/>
         <ShellContent
         Title="Attendance"
         ContentTemplate="{DataTemplate view:AttendanceRecordsPage}"
