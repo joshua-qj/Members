@@ -1,4 +1,5 @@
 using Members.MAUI.ViewModels;
+using System.Runtime.CompilerServices;
 
 namespace Members.MAUI.Views;
 
@@ -15,6 +16,20 @@ public partial class AttendanceRecordsPage : ContentPage
     protected override async void OnAppearing() {
         base.OnAppearing();
         SearchBar.Text = string.Empty;
-        await _attendanceRecordsViewModel.LoadAttendanceRecordsAsync();
+        if (_attendanceRecordsViewModel.IsLogin) {
+            await _attendanceRecordsViewModel.LoadAttendanceRecordsAsync();
+        }
+    }
+    protected override void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+        base.OnPropertyChanged(propertyName);
+       // btnSave.SetBinding(Button.CommandProperty, "EditStudentCommand");
+       if (_attendanceRecordsViewModel.IsLogin== false) {
+            btnLog.SetBinding(Button.CommandProperty, "LoginCommand");
+            btnLog.SetBinding(Button.TextProperty, "Login");
+        }
+        if (_attendanceRecordsViewModel.IsLogin == true) {
+            btnLog.SetBinding(Button.CommandProperty, "LogoffCommand");
+            btnLog.SetBinding(Button.TextProperty, "Log off");
+        }
     }
 }

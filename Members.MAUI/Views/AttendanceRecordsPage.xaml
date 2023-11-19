@@ -10,7 +10,7 @@
 
     <Grid
     Padding="5"
-    RowDefinitions="50,*,50,50"
+    RowDefinitions="50,*,50,50,50"
     ColumnDefinitions="*"
     RowSpacing="5"
     >
@@ -82,6 +82,15 @@
         Text="Get attendance data"
       Command="{Binding LoadAttendanceRecordsByDateCommand}"
                                             
-    ></Button> 
+    ></Button>
+        
+        <Button 
+        Grid.Row="4"
+       Grid.ColumnSpan="2"
+        x:Name="btnLog"
+        Text="Get attendance data"
+      Command="{Binding LoginCommand}"
+                                            
+    ></Button>
     </Grid>
 </ContentPage>

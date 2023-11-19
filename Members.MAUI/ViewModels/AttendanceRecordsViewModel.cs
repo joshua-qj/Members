@@ -1,15 +1,26 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Members.CoreBusiness;
+using Members.MAUI.Views;
 using Members.UseCases.Interfaces;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Members.MAUI.ViewModels {
     public partial class AttendanceRecordsViewModel : ObservableObject {
         private string filterText;
+        private string _loginLogoffText;
         private readonly IViewAttendanceRecordsUseCase _viewAttendanceRecordsUseCase;
         public ObservableCollection<AttendanceRecord> AttendanceRecords { get; set; }
         DateTime _time1;
+        public bool IsLogin { get; set; }
+        public string LoginLogoffText {
+            get { return _loginLogoffText; }
+            set {
+                SetProperty(ref _loginLogoffText, value);
+            }
+        }
+
 
         public DateTime Time1 {
             get => _time1;
@@ -19,6 +30,7 @@ namespace Members.MAUI.ViewModels {
             _viewAttendanceRecordsUseCase = viewAttendanceRecordsUseCase;
             AttendanceRecords = new ObservableCollection<AttendanceRecord>();
             Time1 = DateTime.Now;
+            GetAuthenticatedStatus();
         }
 
 
@@ -47,12 +59,23 @@ namespace Members.MAUI.ViewModels {
         private async Task LoadAttendanceRecordsAsyncByDate(DateTime dateTime) {
             AttendanceRecords.Clear();
             var attendanceRecords = await _viewAttendanceRecordsUseCase.ExecuteAsync();
-            attendanceRecords = attendanceRecords.Where(a=>a.Date.Day==dateTime.Date.Day).OrderBy(a => a.Student.FirstName).ToList();
+            attendanceRecords = attendanceRecords.Where(a => a.Date.Day == dateTime.Date.Day).OrderBy(a => a.Student.FirstName).ToList();
             if (attendanceRecords != null && attendanceRecords.Count > 0) {
                 foreach (var attendance in attendanceRecords) {
                     this.AttendanceRecords.Add(attendance);
                 }
             }
+        }
+        public async Task<bool> GetAuthenticatedStatusAsync() {
+            var result = await SecureStorage.GetAsync("hasAuth");
+            if (result != null && result == "true") {
+                return true;
+            }
+            return false;
+        }
+
+        public async void GetAuthenticatedStatus() {
+            IsLogin = await GetAuthenticatedStatusAsync();
         }
 
         [RelayCommand]
@@ -63,7 +86,19 @@ namespace Members.MAUI.ViewModels {
         public async Task LoadAttendanceRecordsByDate() {
             await LoadAttendanceRecordsAsyncByDate(_time1);
         }
+        [RelayCommand]
+        private async Task Login() {
+            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
+        }
+        [RelayCommand]
+        private async Task Logoff() {
+            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
+        }
 
-
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e) {
+            base.OnPropertyChanged(e);
+           // btnSave.SetBinding(Button.CommandProperty, "EditStudentCommand");
+           
+        }
     }
 }

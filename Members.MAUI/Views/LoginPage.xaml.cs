@@ -16,12 +16,12 @@ public partial class LoginPage : ContentPage
             await SecureStorage.SetAsync("hasAuth", "true");
             await Shell.Current.GoToAsync("///AttendanceRecordsPage");
         } else {
-            await DisplayAlert("Login failed", "Uusername or password if invalid", "Try again");
+            await DisplayAlert("Login failed", "Uusername or password is invalid", "Try again");
         }
     }
 
 
     bool IsCredentialCorrect(string username, string password) {
-        return Username.Text == "admin" && Password.Text == "1234";
+        return Username.Text == "admin" && Password.Text == "root";
     }
 }
