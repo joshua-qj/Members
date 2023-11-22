@@ -13,14 +13,8 @@ namespace Members.MAUI.ViewModels {
         private readonly IViewAttendanceRecordsUseCase _viewAttendanceRecordsUseCase;
         public ObservableCollection<AttendanceRecord> AttendanceRecords { get; set; }
         DateTime _time1;
-        public bool IsLogin { get; set; }
-        public string LoginLogoffText {
-            get { return _loginLogoffText; }
-            set {
-                SetProperty(ref _loginLogoffText, value);
-            }
-        }
-
+        [ObservableProperty]
+        public bool isLogin;
 
         public DateTime Time1 {
             get => _time1;
@@ -30,7 +24,7 @@ namespace Members.MAUI.ViewModels {
             _viewAttendanceRecordsUseCase = viewAttendanceRecordsUseCase;
             AttendanceRecords = new ObservableCollection<AttendanceRecord>();
             Time1 = DateTime.Now;
-            GetAuthenticatedStatus();
+            //  GetAuthenticatedStatus();
         }
 
 
@@ -69,14 +63,11 @@ namespace Members.MAUI.ViewModels {
         public async Task<bool> GetAuthenticatedStatusAsync() {
             var result = await SecureStorage.GetAsync("hasAuth");
             if (result != null && result == "true") {
-                return true;
-            }
-            return false;
+                IsLogin = true;
+            } else { IsLogin = false; }
+            return IsLogin;
         }
 
-        public async void GetAuthenticatedStatus() {
-            IsLogin = await GetAuthenticatedStatusAsync();
-        }
 
         [RelayCommand]
         public async Task SearchBar_TextChangedAsync(string filter) {
@@ -92,13 +83,8 @@ namespace Members.MAUI.ViewModels {
         }
         [RelayCommand]
         private async Task Logoff() {
-            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
-        }
-
-        protected override void OnPropertyChanged(PropertyChangedEventArgs e) {
-            base.OnPropertyChanged(e);
-           // btnSave.SetBinding(Button.CommandProperty, "EditStudentCommand");
-           
+            SecureStorage.RemoveAll();
+            await Shell.Current.GoToAsync("//StudentsPage");
         }
     }
 }

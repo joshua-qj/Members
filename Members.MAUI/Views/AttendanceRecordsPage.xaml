@@ -87,9 +87,10 @@
         <Button 
         Grid.Row="4"
        Grid.ColumnSpan="2"
+            IsEnabled="{Binding IsLogin}"
         x:Name="btnLog"
-        Text="Get attendance data"
-      Command="{Binding LoginCommand}"
+        Text="Log off"
+      Command="{Binding LogoffCommand}"
                                             
     ></Button>
     </Grid>

@@ -14,7 +14,9 @@ public partial class LoginPage : ContentPage
     private async void LoginButton_Clicked(object sender, EventArgs e) {
         if (IsCredentialCorrect(Username.Text, Password.Text)) {
             await SecureStorage.SetAsync("hasAuth", "true");
-            await Shell.Current.GoToAsync("///AttendanceRecordsPage");
+            await Shell.Current.GoToAsync("//AttendanceRecordsPage");
+            Username.Text = string.Empty;
+            Password.Text = string.Empty;
         } else {
             await DisplayAlert("Login failed", "Uusername or password is invalid", "Try again");
         }

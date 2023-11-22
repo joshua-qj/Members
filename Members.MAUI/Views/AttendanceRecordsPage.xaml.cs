@@ -14,22 +14,15 @@ public partial class AttendanceRecordsPage : ContentPage
         BindingContext = _attendanceRecordsViewModel;
     }
     protected override async void OnAppearing() {
-        base.OnAppearing();
+   
         SearchBar.Text = string.Empty;
+         await _attendanceRecordsViewModel.GetAuthenticatedStatusAsync();
         if (_attendanceRecordsViewModel.IsLogin) {
             await _attendanceRecordsViewModel.LoadAttendanceRecordsAsync();
+        } else {
+            await Shell.Current.GoToAsync("//LoginPage");
         }
+        base.OnAppearing();
     }
-    protected override void OnPropertyChanged([CallerMemberName] string propertyName = null) {
-        base.OnPropertyChanged(propertyName);
-       // btnSave.SetBinding(Button.CommandProperty, "EditStudentCommand");
-       if (_attendanceRecordsViewModel.IsLogin== false) {
-            btnLog.SetBinding(Button.CommandProperty, "LoginCommand");
-            btnLog.SetBinding(Button.TextProperty, "Login");
-        }
-        if (_attendanceRecordsViewModel.IsLogin == true) {
-            btnLog.SetBinding(Button.CommandProperty, "LogoffCommand");
-            btnLog.SetBinding(Button.TextProperty, "Log off");
-        }
-    }
+
 }
