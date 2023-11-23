@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Members.MAUI.Views.LoginPage"
-             Title="LoginPage">
+             Title="Login">
     <Grid RowDefinitions="2*,*" Margin="0,10,0,0">
         <VerticalStackLayout Padding="10" VerticalOptions="Center" HorizontalOptions="Center">
             <Frame BorderColor="Gray"
@@ -36,9 +36,6 @@
            FontAttributes="Bold" />
                     </VerticalStackLayout>
 
-                    <!--<BoxView Color="Gray"
-             HeightRequest="2"
-             HorizontalOptions="Fill" />-->
                     <VerticalStackLayout Padding="10">
                         <Label FontFamily="Consolas" Text="Username"/>
                         <Frame CornerRadius="10" Padding="3" Margin="0,10,0,0">
@@ -71,28 +68,7 @@
                         <BoxView Color="Black"
                                  Margin="0,0,0,0"
                                  HeightRequest="0"
-                                 HorizontalOptions="Fill" />
-                        <!--<VerticalStackLayout Padding="10" Margin="0,10,0,0">
-                            <Label HorizontalOptions="Center"
-                                FontAttributes="Bold"
-                                FontFamily="Consolas">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span FontFamily="Consolas" FontAttributes="Bold" Text="Don't have an account?" />
-                                        <Span FontFamily="Consolas" FontAttributes="Bold" Text="Sign Up"
-                  TextColor="{StaticResource Primary}"
-                  TextDecorations="Underline">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding ValidateCommand}"
-                                          CommandParameter="https://learn.microsoft.com/dotnet/maui/" />
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Text="{Binding IsButtonEnabled}"/>
-                        </VerticalStackLayout>-->
-
+                                 HorizontalOptions="Fill" /> 
                     </VerticalStackLayout>
                 </StackLayout>
             </Frame>

@@ -10,6 +10,7 @@ namespace Members.MAUI {
             Routing.RegisterRoute(nameof(EditTeamPage), typeof(EditTeamPage));
             Routing.RegisterRoute(nameof(StudentsPage), typeof(StudentsPage));
             Routing.RegisterRoute(nameof(TeamsPage), typeof(TeamsPage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             // Routing.RegisterRoute(nameof(EditTeamPage),typeof(AddTeamPage));
         }
     }

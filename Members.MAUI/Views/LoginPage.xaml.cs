@@ -6,10 +6,10 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
     }
-    protected override bool OnBackButtonPressed() {
-        Application.Current.Quit();
-        return true;
-    }
+    //protected override bool OnBackButtonPressed() {
+    //    Application.Current.Quit();
+    //    return true;
+    //}
 
     private async void LoginButton_Clicked(object sender, EventArgs e) {
         if (IsCredentialCorrect(Username.Text, Password.Text)) {
@@ -18,7 +18,7 @@ public partial class LoginPage : ContentPage
             Username.Text = string.Empty;
             Password.Text = string.Empty;
         } else {
-            await DisplayAlert("Login failed", "Uusername or password is invalid", "Try again");
+            await DisplayAlert("Login failed", "Username or password is invalid", "Try again");
         }
     }
 

@@ -16,13 +16,15 @@ public partial class AttendanceRecordsPage : ContentPage
     protected override async void OnAppearing() {
    
         SearchBar.Text = string.Empty;
-         await _attendanceRecordsViewModel.GetAuthenticatedStatusAsync();
+        await _attendanceRecordsViewModel.GetAuthenticatedStatusAsync();
         if (_attendanceRecordsViewModel.IsLogin) {
             await _attendanceRecordsViewModel.LoadAttendanceRecordsAsync();
+            base.OnAppearing();
         } else {
-            await Shell.Current.GoToAsync("//LoginPage");
+            await Shell.Current.GoToAsync(nameof(LoginPage));
+            base.OnAppearing();
         }
-        base.OnAppearing();
+       
     }
 
 }

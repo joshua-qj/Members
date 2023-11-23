@@ -77,10 +77,10 @@ namespace Members.MAUI.ViewModels {
         public async Task LoadAttendanceRecordsByDate() {
             await LoadAttendanceRecordsAsyncByDate(_time1);
         }
-        [RelayCommand]
-        private async Task Login() {
-            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
-        }
+        //[RelayCommand]
+        //private async Task Login() {
+        //    await Shell.Current.GoToAsync("//LoginPage");
+        //}
         [RelayCommand]
         private async Task Logoff() {
             SecureStorage.RemoveAll();
