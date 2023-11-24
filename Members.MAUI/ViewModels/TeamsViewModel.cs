@@ -4,18 +4,12 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using Members.MAUI.Views;
 using Members.UseCases.Interfaces;
+using System.Diagnostics;
 
 namespace Members.MAUI.ViewModels {
-    public partial class TeamsViewModel : ObservableObject {
+    public partial class TeamsViewModel : BaseViewModel {
         [ObservableProperty]
         private ObservableCollection<Team> _teams;
-        //public ObservableCollection<Team> Teams {
-        //    get => _teams;
-        //    set { 
-        //    SetProperty(ref _teams, value);
-        //    }
-        //}
-
 
 
 
@@ -24,7 +18,7 @@ namespace Members.MAUI.ViewModels {
         private readonly IDeleteTeamUseCase _deleteTeamUseCase;
 
         public TeamsViewModel(IViewTeamsUseCase viewTeamsUseCase, IDeleteTeamUseCase deleteTeamUseCase) {
-       
+
             Teams = new ObservableCollection<Team>();
             _viewTeamsUseCase = viewTeamsUseCase;
             _deleteTeamUseCase = deleteTeamUseCase;
@@ -33,7 +27,7 @@ namespace Members.MAUI.ViewModels {
             get { return filterText; }
             set {
                 filterText = value;
-                LoadTeamsMethod(filterText); //remove squiggy line, use     private async void  to wrap async method.
+                LoadTeamsMethod(filterText); 
             }
         }
 
@@ -41,15 +35,27 @@ namespace Members.MAUI.ViewModels {
             await LoadTeamsAsync(filterText);
         }
         public async Task LoadTeamsAsync(string filterText = null) {
-            
-            Teams.Clear();
-            var teams = await _viewTeamsUseCase.ExecuteAsync(filterText);
-           teams = teams.OrderBy(team => team.Name).ToList();
-            if (teams != null && teams.Count > 0) {
-                foreach (var team in teams) {
-                    this.Teams.Add(team);
+            if (IsBusy) {
+                return;
+            }
+            try {
+                IsBusy = true;
+                Teams.Clear();
+                var teams = await _viewTeamsUseCase.ExecuteAsync(filterText);
+                teams = teams.OrderBy(team => team.Name).ToList();
+                if (teams != null && teams.Count > 0) {
+                    foreach (var team in teams) {
+                        this.Teams.Add(team);
+                    }
                 }
             }
+            catch (Exception ex) {
+                Debug.WriteLine(ex);
+                await Shell.Current.DisplayAlert("Error!",$"{ ex.Message}","Ok");
+            }
+            finally { IsBusy = false; }
+
+
         }
         [RelayCommand]
         public async Task DeleteTeam(int teamId) {
