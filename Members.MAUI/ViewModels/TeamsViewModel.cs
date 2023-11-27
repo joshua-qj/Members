@@ -41,6 +41,7 @@ namespace Members.MAUI.ViewModels {
             try {
                 IsBusy = true;
                 Teams.Clear();
+               await Task.Delay(3000);
                 var teams = await _viewTeamsUseCase.ExecuteAsync(filterText);
                 teams = teams.OrderBy(team => team.Name).ToList();
                 if (teams != null && teams.Count > 0) {

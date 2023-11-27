@@ -3,9 +3,10 @@ using CommunityToolkit.Mvvm.Input;
 using Members.CoreBusiness;
 using Members.MAUI.Views;
 using Members.UseCases.Interfaces;
+using System.Diagnostics;
 
 namespace Members.MAUI.ViewModels {
-    public partial class TeamViewModel : ObservableObject {
+    public partial class TeamViewModel : BaseViewModel {
         private Team _team;
         private readonly IAddTeamUseCase _addTeamUseCase;
         private readonly IEditTeamUseCase _editTeamUseCase;
@@ -19,19 +20,25 @@ namespace Members.MAUI.ViewModels {
             _editTeamUseCase = editTeamUseCase;
             _viewTeamUseCase = viewTeamUseCase;
         }
-
-
         public Team Team {
-            get => _team; 
+            get => _team;
             set { SetProperty(ref _team, value); }
         }
 
-        public bool IsNameProvided { get; set; }
-
-    
+        public bool IsNameProvided { get; set; }    
     public async Task LoadTeam(int TeamId) {
-        Team = await _viewTeamUseCase.ExecuteAsync(TeamId);
-    }
+            if (IsBusy) {
+                return;
+            }
+            try {
+                Team = await _viewTeamUseCase.ExecuteAsync(TeamId);
+            }
+            catch (Exception ex) {
+                Debug.WriteLine(ex);
+                await Shell.Current.DisplayAlert("Error!", $"{ex.Message}", "Ok");
+            }
+            finally { IsBusy = false; }
+        }
 
     [RelayCommand]
     private async Task EditTeam() {
